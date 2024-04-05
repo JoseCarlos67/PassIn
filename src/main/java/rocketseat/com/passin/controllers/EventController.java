@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import rocketseat.com.passin.dto.attendee.AttendeeListResponseDTO;
 import rocketseat.com.passin.dto.event.EventIdDTO;
 import rocketseat.com.passin.dto.event.EventRequestDTO;
 import rocketseat.com.passin.dto.event.EventResponseDTO;
+import rocketseat.com.passin.services.AttendeeService;
 import rocketseat.com.passin.services.EventService;
 
 @RestController
@@ -14,6 +16,7 @@ import rocketseat.com.passin.services.EventService;
 @RequiredArgsConstructor
 public class EventController {
     private final EventService service;
+    private final AttendeeService attendeeService;
 
     @GetMapping("/{id}")
     public ResponseEntity<EventResponseDTO> getEvent(@PathVariable String id) {
@@ -28,5 +31,11 @@ public class EventController {
         var uri = uriComponentsBuilder.path("/events/{id}").buildAndExpand(eventIdDTO.eventId()).toUri();
 
         return ResponseEntity.created(uri).body(eventIdDTO);
+    }
+
+    @GetMapping("/attendees/{id}")
+    public ResponseEntity<AttendeeListResponseDTO> getEventAttendees(@PathVariable String id) {
+        AttendeeListResponseDTO attendeeListResponseDTO = this.attendeeService.getEventsAttendee(id);
+        return ResponseEntity.ok(attendeeListResponseDTO);
     }
 }

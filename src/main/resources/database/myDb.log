@@ -1,5 +1,9 @@
 /*C12*/SET SCHEMA PUBLIC
 SET SCHEMA "PUBLIC"
+INSERT INTO EVENTS VALUES('8af25ca1-e9e1-4ec4-9c67-da4fad5e8d9a','Torneio Pokemon TESTE22','Lute contra outros treinadores e veja quem \u00e9 o melhor','torneio-pokemon-teste22',2)
+COMMIT
+INSERT INTO ATTENDEES VALUES('857444e4-a136-41c1-9176-d0b07a8a23ca','Larissa','lari@gmail.com','8af25ca1-e9e1-4ec4-9c67-da4fad5e8d9a','2024-04-05 22:46:58.952239')
+COMMIT
 DISCONNECT
 /*C13*/SET SCHEMA PUBLIC
 DISCONNECT
